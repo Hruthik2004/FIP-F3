@@ -1,0 +1,13 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm run build"
+
+[deploy]
+startCommand = "node proxy-server.mjs & npx serve -s dist -l $PORT"
+healthcheckPath = "/"
+healthcheckTimeout = 30
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+[nixpacks]
+providers = ["node"]
